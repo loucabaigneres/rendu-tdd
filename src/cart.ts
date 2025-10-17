@@ -6,6 +6,7 @@ export class Cart {
   }
 
   addProduct(name: string, priceCents: number) {
+    if (priceCents <= 0) throw new Error('price must be positive');
     this.items.push({ name, priceCents });
   }
 
