@@ -7,7 +7,7 @@ test('empty cart total is 0.00', () => {
 
 test('adding one product returns its price', () => {
   const cart = new Cart();
-  cart.addProduct('Socks', 1000); // 10.00 €
+  cart.addProduct('Socks', 1000);
   expect(cart.total()).toBe(10.00);
 });
 
@@ -19,4 +19,12 @@ test('adding a product with price 0 throws', () => {
 test('adding a product with negative price throws', () => {
   const cart = new Cart();
   expect(() => cart.addProduct('Error', -100)).toThrow();
+});
+
+test('apply 10% discount only when total > 100.00€', () => {
+  const cart = new Cart();
+  cart.addProduct('Expensive', 6000); // 60.00
+  cart.addProduct('More', 5000);      // 50.00 -> total 110.00 > 100 -> discount
+  // 110.00 * 0.9 = 99.00
+  expect(cart.total()).toBe(99.00);
 });
