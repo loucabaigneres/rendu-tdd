@@ -28,3 +28,10 @@ test('apply 10% discount only when total > 100.00€', () => {
   // 110.00 * 0.9 = 99.00
   expect(cart.total()).toBe(99.00);
 });
+
+test('no discount at exactly 100.00€', () => {
+  const cart = new Cart();
+  cart.addProduct('ItemA', 4000); // 40.00
+  cart.addProduct('ItemB', 6000); // 60.00 -> total 100.00 exactly -> no discount
+  expect(cart.total()).toBe(100.00);
+});
