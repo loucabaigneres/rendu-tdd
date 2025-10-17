@@ -58,3 +58,12 @@ Vous devez produire :
 4. Expliquez en quelques lignes comment vous intégreriez ces tests dans un pipeline CI/CD.
 
 ---
+
+#### Réponse à la question 4 :
+
+Pour intégrer les tests dans un pipeline CI/CD :
+- Exécuter le pipeline sur push et pull request afin d’empêcher la fusion de code cassant.
+- Installer Node.js et dépendances (npm ci) puis utiliser le script npm test défini dans package.json.
+- Mettre en cache le dossier npm (ou node_modules) pour accélérer les exécutions.
+- Faire échouer le job si les tests échouent ; exiger le statut de checks "passing" avant merge.
+- Optionnel : exécuter sur une matrice de versions Node, générer un rapport de couverture et publier les artefacts ou badge de build.
