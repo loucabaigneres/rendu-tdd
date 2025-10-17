@@ -12,6 +12,11 @@ export class Cart {
 
   total(): number {
     const sumCents = this.items.reduce((s, it) => s + it.priceCents, 0);
-    return parseFloat((sumCents / 100).toFixed(2));
+    let finalCents = sumCents;
+    if (sumCents > 10000) {
+      // apply 10% discount and round to nearest cent
+      finalCents = Math.round(sumCents * 0.9);
+    }
+    return parseFloat((finalCents / 100).toFixed(2));
   }
 }
