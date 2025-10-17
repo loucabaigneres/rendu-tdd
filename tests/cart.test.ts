@@ -35,3 +35,10 @@ test('no discount at exactly 100.00€', () => {
   cart.addProduct('ItemB', 6000); // 60.00 -> total 100.00 exactly -> no discount
   expect(cart.total()).toBe(100.00);
 });
+
+test('duplicate products sum correctly', () => {
+  const cart = new Cart();
+  cart.addProduct('Socks', 1000);
+  cart.addProduct('Socks', 1000);
+  expect(cart.total()).toBe(20.00);
+});
